@@ -11,6 +11,8 @@ public class Constants {
     public static final String REGISTERS_NOT_FOUND = "No se encontraron los registros solicitados!";
     public static final String REGISTER_UPDATED = "Se actualizó el registro!";
     public static final String REGISTER_NOT_UPDATED = "Hubo un error al actualizar el registro!";
+    public static final String REGISTER_DELETE = "Se eliminó el registro!";
+    public static final String REGISTER_NOT_DELETE = "Hubo un error al eliminar el registro!";
 
     //Autenticacion
     public static final String USER_LOGIN = "Usuario logeado!";

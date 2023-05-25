@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService userServiceImpl;
+    private UserService userServiceImp;
     private ApiResponse apiResponse;
     @GetMapping(value = "/{id}")
     public ResponseEntity getById(@PathVariable(name = "id") Long id){
         try{
-            apiResponse = new ApiResponse(Constants.REGISTER_FOUND,userServiceImpl.getUserById(id));
+            apiResponse = new ApiResponse(Constants.REGISTER_FOUND,userServiceImp.getUserById(id));
             return new ResponseEntity(apiResponse, HttpStatus.OK);
         }catch(Exception e){
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_FOUND, e.getMessage());
@@ -29,7 +29,7 @@ public class UserController {
     @PostMapping(value = "")
     public ResponseEntity createUser(@RequestBody User user){
         try{
-            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,userServiceImpl.createUser(user));
+            apiResponse = new ApiResponse(Constants.REGISTER_CREATED,userServiceImp.createUser(user));
             return new ResponseEntity(apiResponse, HttpStatus.CREATED);
         }catch(Exception e){
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_CREATED, e.getMessage());
@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping(value = "")
     public ResponseEntity getAll(){
         try{
-            apiResponse = new ApiResponse(Constants.REGISTERS_FOUND, userServiceImpl.allUsers());
+            apiResponse = new ApiResponse(Constants.REGISTERS_FOUND, userServiceImp.allUsers());
             return new ResponseEntity(apiResponse, HttpStatus.OK);
         }catch(Exception e){
             apiResponse = new ApiResponse(Constants.REGISTERS_NOT_FOUND, e.getMessage());
@@ -52,7 +52,7 @@ public class UserController {
     @PutMapping(value="/{id}")
     public ResponseEntity updateUser(@PathVariable(name="id")Long id,User user) {
         try {
-            apiResponse = new ApiResponse(Constants.REGISTER_UPDATED, userServiceImpl.updateUser(id, user));
+            apiResponse = new ApiResponse(Constants.REGISTER_UPDATED, userServiceImp.updateUser(id, user));
             return new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (Exception e) {
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_UPDATED, e.getMessage());
