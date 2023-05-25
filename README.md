@@ -1,2 +1,2 @@
-# segundo_parcial
-Segundo parcial procesos de negocio
+# primer_parcial
+Primer parcial procesos de negocio
