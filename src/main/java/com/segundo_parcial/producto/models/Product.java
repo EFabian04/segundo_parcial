@@ -1,6 +1,7 @@
 package com.segundo_parcial.producto.models;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data

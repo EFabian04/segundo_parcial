@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.segundo_parcial.producto.models.ApiProduct;
 import com.segundo_parcial.producto.models.Product;
 import com.segundo_parcial.producto.service.RestProductService;
+import com.segundo_parcial.producto.utils.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,8 @@ public class RestProductController {
     public ResponseEntity saveProduct(@PathVariable Long id) throws JsonProcessingException {
 
         Product product = restProductService.saveProduct(id);
-        if(product == null){
-            return new ResponseEntity<>("El producto no ha sido encontrado",HttpStatus.NOT_FOUND);
+        if (product == null) {
+            return new ResponseEntity<>(Constants.REGISTER_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity(product, HttpStatus.ACCEPTED);
     }

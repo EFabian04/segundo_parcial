@@ -1,7 +1,9 @@
 package com.segundo_parcial.producto.utils;
 
 public class Constants {
-    private Constants(){}
+    private Constants() {
+    }
+
     //Mensajes CRUD
     public static final String REGISTER_FOUND = "Se encontró el registro solicitado!";
     public static final String REGISTER_NOT_FOUND = "No Se encontró el registro solicitado!";

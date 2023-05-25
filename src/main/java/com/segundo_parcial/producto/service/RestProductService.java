@@ -2,7 +2,7 @@ package com.segundo_parcial.producto.service;
 
 import com.segundo_parcial.producto.models.ApiProduct;
 import com.segundo_parcial.producto.repository.ProductRepository;
-//import com.primer_parcial.producto.service.ProductService;
+import com.segundo_parcial.producto.service.ProductService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.segundo_parcial.producto.models.Product;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class RestProductService {
     private final ProductRepository productRepository;
 
     public ApiProduct getById(Long id) throws JsonProcessingException {
-        String url = "https://fakestoreapi.com/products/"+id;
+        String url = "https://fakestoreapi.com/products/" + id;
         ApiProduct product = restTemplate.getForObject(url, ApiProduct.class);
         return product;
     }
@@ -31,13 +31,13 @@ public class RestProductService {
         return listProducts;
     }
 
-    public Product saveProduct(Long id) throws JsonProcessingException{
-       String url = "https://fakestoreapi.com/products/"+id;
-       Product product = restTemplate.getForObject(url, Product.class);
-       if(product!=null){
-           return productRepository.save(product);
-       }
-       return null;
+    public Product saveProduct(Long id) throws JsonProcessingException {
+        String url = "https://fakestoreapi.com/products/" + id;
+        Product product = restTemplate.getForObject(url, Product.class);
+        if (product != null) {
+            return productRepository.save(product);
+        }
+        return null;
     }
 
 }

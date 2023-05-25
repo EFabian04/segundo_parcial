@@ -5,7 +5,9 @@ import com.segundo_parcial.producto.repository.UserRepository;
 import com.segundo_parcial.producto.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import static com.segundo_parcial.producto.utils.Constants.USER_NOT_FOUND;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,7 @@ public class UserServiceImp implements UserService {
     @Autowired
     private JWTUtil jwtUtil;
 
-    public User getUserById(Long id){
+    public User getUserById(Long id) {
         return userRepository.findById(id).get();
     }
 
@@ -44,7 +46,7 @@ public class UserServiceImp implements UserService {
     public String login(User user) {
         Optional<User> userBd = userRepository.findByEmailAndPassword(user.getEmail()
                 , user.getPassword());
-        if(userBd.isEmpty()){
+        if (userBd.isEmpty()) {
             throw new RuntimeException(USER_NOT_FOUND);
         }
         return jwtUtil.create(String.valueOf(userBd.get().getId()),

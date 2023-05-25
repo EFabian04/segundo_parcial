@@ -16,13 +16,13 @@ public class AuthController {
     private ApiResponse apiResponse;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody User user){
-        try{
-            apiResponse = new ApiResponse(Constants.USER_LOGIN,userService.login(user));
+    public ResponseEntity login(@RequestBody User user) {
+        try {
+            apiResponse = new ApiResponse(Constants.USER_LOGIN, userService.login(user));
             return new ResponseEntity(apiResponse, HttpStatus.OK);
 
-        }catch (Exception e){
-            apiResponse = new ApiResponse(e.getMessage(),"");
+        } catch (Exception e) {
+            apiResponse = new ApiResponse(e.getMessage(), "");
             return new ResponseEntity(apiResponse, HttpStatus.NOT_FOUND);
         }
     }

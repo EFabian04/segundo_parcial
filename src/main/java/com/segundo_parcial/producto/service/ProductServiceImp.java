@@ -4,14 +4,16 @@ import com.segundo_parcial.producto.models.Product;
 import com.segundo_parcial.producto.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+
 @Service
 public class ProductServiceImp implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
-    public Product getProductById(Long id){
+    public Product getProductById(Long id) {
         return productRepository.findById(id).get();
     }
 
@@ -48,12 +50,12 @@ public class ProductServiceImp implements ProductService {
     public Boolean deleteProduct(Long id, Product product) {
         try {
             Product productBD = productRepository.findById(id).get();
-            if (productBD == null){
+            if (productBD == null) {
                 return false;
             }
             productRepository.delete(productBD);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
