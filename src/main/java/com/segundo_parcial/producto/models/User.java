@@ -1,7 +1,6 @@
 package com.segundo_parcial.producto.models;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -24,7 +23,4 @@ public class User {
     private String address;
     @Column(length = 10)
     private LocalDate birthday;
-
-    @OneToMany(mappedBy = "user")
-    private List<Product> products;
 }

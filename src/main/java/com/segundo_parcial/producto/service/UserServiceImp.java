@@ -28,9 +28,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
-        return userRepository.save(user);
-    }
+    public User createUser(User user) {return userRepository.save(user); }
 
     @Override
     public User updateUser(Long id, User user) {
