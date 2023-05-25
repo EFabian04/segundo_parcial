@@ -21,6 +21,7 @@ public class RestProductService {
     public ApiProduct getById(Long id) throws JsonProcessingException {
         String url = "https://fakestoreapi.com/products/" + id;
         ApiProduct product = restTemplate.getForObject(url, ApiProduct.class);
+        System.out.println(product);
         return product;
     }
 

@@ -20,6 +20,7 @@ public class RestProductController {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity getProduct(@PathVariable Long id) throws JsonProcessingException {
+
         return new ResponseEntity(restProductService.getById(id), HttpStatus.OK);
     }
 
@@ -35,6 +36,7 @@ public class RestProductController {
         if (product == null) {
             return new ResponseEntity<>(Constants.REGISTER_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
+        System.out.println(product);
         return new ResponseEntity(product, HttpStatus.ACCEPTED);
     }
 }
