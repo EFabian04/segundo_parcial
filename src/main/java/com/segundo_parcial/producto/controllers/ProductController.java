@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -23,9 +22,9 @@ public class ProductController {
 
     @GetMapping(value = "/product/{id}")
     public ResponseEntity getById(@PathVariable(name = "id") Long id) {
-
         try {
             apiResponse = new ApiResponse(Constants.REGISTER_FOUND, productServiceImp.getProductById(id));
+            System.out.println(apiResponse);
             return new ResponseEntity(apiResponse, HttpStatus.OK);
         } catch (Exception e) {
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_FOUND, e.getMessage());
