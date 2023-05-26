@@ -23,19 +23,13 @@ public class ProductController {
     private JWTUtil jwtUtil;
 
     @GetMapping(value = "/product/{id}")
-    public ResponseEntity getById(@PathVariable(name = "id") Long id,@RequestHeader(value = "Authorization") String token) {
-
-        if(!validateToken(token)){
-            return new ResponseEntity("Token invalido", HttpStatus.UNAUTHORIZED);
-        }
-        if (productServiceImp.validarIdExist(id)) {
-            return ResponseEntity.badRequest().body("El ID ya existe");
-        }
+    public ResponseEntity getById(@PathVariable(name = "id") Long id) {
 
         try {
             apiResponse = new ApiResponse(Constants.REGISTER_FOUND, productServiceImp.getProductById(id));
             System.out.println(apiResponse);
             return new ResponseEntity(apiResponse, HttpStatus.OK);
+
         } catch (Exception e) {
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_FOUND, e.getMessage());
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
@@ -43,14 +37,12 @@ public class ProductController {
     }
 
     @GetMapping(value = "/products")
-    public ResponseEntity<List> getAllProduct(@RequestHeader(value = "Authorization") String token) {
+    public ResponseEntity<List> getAllProduct() {
 
         try {
-            if(!validateToken(token)){
-                apiResponse = new ApiResponse(Constants.REGISTERS_FOUND, productServiceImp.getAllProduct());
-                return new ResponseEntity(apiResponse, HttpStatus.OK);
-            }
+            apiResponse = new ApiResponse(Constants.REGISTERS_FOUND, productServiceImp.getAllProduct());
             return new ResponseEntity(apiResponse, HttpStatus.OK);
+
         } catch (Exception e) {
             apiResponse = new ApiResponse(Constants.REGISTERS_NOT_FOUND, e.getMessage());
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
@@ -58,15 +50,9 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product")
-    public ResponseEntity createProduct(@RequestBody Product product,@RequestHeader(value = "Authorization") String token) {
-        Long id = product.getId();
+    public ResponseEntity createProduct(@RequestBody Product product) {
+        //Long id = product.getId();
         try {
-            if(!validateToken(token)){
-                return new ResponseEntity("Token invalido", HttpStatus.UNAUTHORIZED);
-            }
-            if (productServiceImp.validarIdExist(id)) {
-                return ResponseEntity.badRequest().body("El ID ya existe");
-            }
             apiResponse = new ApiResponse(Constants.REGISTER_CREATED, productServiceImp.createProduct(product));
             return new ResponseEntity(apiResponse, HttpStatus.CREATED);
         } catch (Exception e) {

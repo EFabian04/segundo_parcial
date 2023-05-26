@@ -23,4 +23,6 @@ public class User {
     private String address;
     @Column(length = 10)
     private LocalDate birthday;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Product> products;
 }
