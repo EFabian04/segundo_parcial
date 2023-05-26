@@ -50,11 +50,21 @@ public class ProductController {
     }
 
     @PostMapping(value = "/product")
-    public ResponseEntity createProduct(@RequestBody Product product) {
-        //Long id = product.getId();
+    public ResponseEntity createProduct(@RequestBody Product product,@RequestHeader(value = "Authorization") String token) {
+
         try {
+            if(productServiceImp.validateId(product.getId())) {
+                apiResponse = new ApiResponse(Constants.REGISTER_NOT_CREATED, "");
+                return new ResponseEntity(apiResponse, HttpStatus.CONFLICT);
+            }
+            if(!validateToken(token)) {
+                apiResponse = new ApiResponse(Constants.REGISTER_NOT_CREATED, "");
+                return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);
+            }
+
             apiResponse = new ApiResponse(Constants.REGISTER_CREATED, productServiceImp.createProduct(product));
             return new ResponseEntity(apiResponse, HttpStatus.CREATED);
+
         } catch (Exception e) {
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_CREATED, e.getMessage());
             return new ResponseEntity(apiResponse, HttpStatus.BAD_REQUEST);

@@ -61,7 +61,6 @@ public class ProductServiceImp implements ProductService {
     }
 
     public boolean validateId(Long id) {
-        System.out.println("fsgsffadasdsadw"+id);
         return productRepository.existsById(id);
     }
 }

@@ -36,7 +36,6 @@ public class RestProductController {
         if (product == null) {
             return new ResponseEntity<>(Constants.REGISTER_NOT_FOUND, HttpStatus.NOT_FOUND);
         }
-        System.out.println(product);
         return new ResponseEntity(product, HttpStatus.ACCEPTED);
     }
 }

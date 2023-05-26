@@ -6,10 +6,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Table(name = "product", uniqueConstraints = {@UniqueConstraint(columnNames = {"title"})})
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(unique = true)
     private String title;
     private float price;
     @Column(length = 1000)
