@@ -59,4 +59,8 @@ public class ProductServiceImp implements ProductService {
             return false;
         }
     }
+
+    public boolean validarIdExist(Long id) {
+        return productRepository.existsById(id);
+    }
 }

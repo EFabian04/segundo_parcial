@@ -16,7 +16,7 @@ public class Product {
     private String description;
     private String image;
     private String category;
-    //@ManyToOne
-    //@JoinColumn(name = "user_id",nullable = false)
-    //private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 }
